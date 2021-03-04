@@ -1,6 +1,6 @@
 class Car < ApplicationRecord
-  validates_presence_of :model
-  validates_presence_of :year
-  validates_presence_of :price
-  validates_presence_of :cost_price
+
+  validates_presence_of :model, :year, :price, :cost_price
+  has_many :parts
+
 end
