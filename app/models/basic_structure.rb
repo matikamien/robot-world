@@ -1,0 +1,4 @@
+class BasicStructure < AssemblyLine
+
+end
+

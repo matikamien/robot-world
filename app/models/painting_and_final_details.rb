@@ -1,0 +1,5 @@
+class PaintingAndFinalDetails < AssemblyLine
+
+end
+
+

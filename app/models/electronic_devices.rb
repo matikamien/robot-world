@@ -1,0 +1,5 @@
+class ElectronicDevices < AssemblyLine
+
+end
+
+
