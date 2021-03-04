@@ -1,0 +1,2 @@
+class Chassis < Part
+end
