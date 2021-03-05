@@ -6,7 +6,7 @@ RSpec.describe ElectronicDevices, type: :model do
 
   it "should left the car with the electronic devices" do
     car = Car.create!(model: "Corsa", year: 1950, price: 1500, cost_price:1000)
-    subject.add_electronic_devices_to_car(car)
+    subject.execute_action_to_car(car)
 
     amount_of_lasers = car.parts.select { |part| part.type == "Laser" }.size
     expect(amount_of_lasers).to eq(1)
