@@ -4,11 +4,9 @@ class CarFactory < ApplicationRecord
 
   def initialize(params = {})
     super
-    @assembly_lines = [ BasicStructure.new, ElectronicDevices.new, PaintingAndFinalDetails.new ]
-  end
-
-  def assembly_lines
-    @assembly_lines
+    self.assembly_lines << BasicStructure.create!(car_factory:self)
+    self.assembly_lines << ElectronicDevices.create!(car_factory:self)
+    self.assembly_lines << PaintingAndFinalDetails.create!(car_factory:self)
   end
 
 end
