@@ -12,4 +12,8 @@ class Car < ApplicationRecord
     self.assembly_stage_completed?
   end
 
+  def current_assembly_stage
+    self.assembly_stage
+  end
+
 end
