@@ -12,7 +12,7 @@ class RobotBuilder
   def create_car
     price = random_price
     car = Car.create! year: current_year, model: random_model, price: price, cost_price: calculate_cost_price(price)
-    @car_factory.assembly_lines.each { |assembly_line| assembly_line.execute_action_to_car car }
+    @car_factory.assembly_lines.each { |assembly_line| assembly_line.execute_action_to_car(car, self)  }
     car.assembly_stage_completed!
     car
   end
@@ -31,6 +31,30 @@ class RobotBuilder
 
   def calculate_cost_price(price)
     0.5*price
+  end
+
+  def create_wheel(car)
+    Wheel.create!(car:car)
+  end
+
+  def create_chassis(car)
+    Chassis.create!(car:car)
+  end
+
+  def create_engine(car)
+    Engine.create!(car:car)
+  end
+
+  def create_seat(car)
+    Seat.create!(car:car)
+  end
+
+  def create_laser(car)
+    Laser.create!(car:car)
+  end
+
+  def create_computer(car)
+    Computer.create!(car:car)
   end
 
 end
