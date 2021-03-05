@@ -48,4 +48,24 @@ RSpec.describe Car, type: :model do
     should respond_to(:parts)
   end
 
+  it "is not complete in basic structure assembly stage" do
+    subject.assembly_stage_basic_structure!
+    expect(subject.assembly_stage).not_to eq("complete")
+  end
+
+  it "is not complete in electronic devices assembly stage" do
+    subject.assembly_stage_electronic_devices!
+    expect(subject.assembly_stage).not_to eq("complete")
+  end
+
+  it "is not complete in painting and final details assembly stage" do
+    subject.assembly_stage_painting_and_final_details!
+    expect(subject.assembly_stage).not_to eq("complete")
+  end
+
+  it "is is complete in complete assembly stage" do
+    subject.assembly_stage_completed!
+    expect(subject.assembly_stage).to eq("completed")
+  end
+
 end
