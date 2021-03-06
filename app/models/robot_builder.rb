@@ -1,13 +1,16 @@
 class RobotBuilder
 
   attr_reader :car_factory
+  attr_writer :defect_probability
 
   CAR_MODELS = %w[Megane Tida Corsa March Up Gol Polo Fun Golf Vento]
   CAR_PRICES = [ 10000, 25000, 7500, 12800, 30000, 50000 ]
+  DEFECT_PROBABILITY = 0.03
 
   def initialize
     @car_factory = CarFactory.create!
     @warehouse = Warehouse.new
+    @defect_probability = DEFECT_PROBABILITY
   end
 
   def create_car_and_park_in_warehouse
@@ -48,28 +51,51 @@ class RobotBuilder
     0.5*price
   end
 
+  def create_defect
+    # random will be a number between 1 and 100 (inclusive)
+    random = rand(100) + 1
+
+    if random <= @defect_probability*100
+      ConcreteDefect.new
+    else
+      NoDefect.new
+    end
+  end
+
   def create_wheel
-    Wheel.new
+    wheel = Wheel.new
+    wheel.set_defect create_defect
+    wheel
   end
 
   def create_chassis
-    Chassis.new
+    chassis = Chassis.new
+    chassis.set_defect create_defect
+    chassis
   end
 
   def create_engine
-    Engine.new
+    engine = Engine.new
+    engine.set_defect create_defect
+    engine
   end
 
   def create_seat
-    Seat.new
+    seat = Seat.new
+    seat.set_defect create_defect
+    seat
   end
 
   def create_laser
-    Laser.new
+    laser = Laser.new
+    laser.set_defect create_defect
+    laser
   end
 
   def create_computer
-    Computer.new
+    computer = Computer.new
+    computer.set_defect create_defect
+    computer
   end
 
   def total_factory_stock

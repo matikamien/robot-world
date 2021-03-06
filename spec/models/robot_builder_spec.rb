@@ -53,4 +53,10 @@ RSpec.describe RobotBuilder, type: :model do
     expect(robot_builder.total_factory_stock).to eq 1
   end
 
+  it "can create a part with a defect" do
+    robot_builder.defect_probability = 1
+    wheel = robot_builder.create_wheel
+    expect(wheel.has_defect).to eq true
+  end
+
 end
