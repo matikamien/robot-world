@@ -48,28 +48,28 @@ class RobotBuilder
     0.5*price
   end
 
-  def create_wheel(car)
-    Wheel.create!(car:car)
+  def create_wheel
+    Wheel.new
   end
 
-  def create_chassis(car)
-    Chassis.create!(car:car)
+  def create_chassis
+    Chassis.new
   end
 
-  def create_engine(car)
-    Engine.create!(car:car)
+  def create_engine
+    Engine.new
   end
 
-  def create_seat(car)
-    Seat.create!(car:car)
+  def create_seat
+    Seat.new
   end
 
-  def create_laser(car)
-    Laser.create!(car:car)
+  def create_laser
+    Laser.new
   end
 
-  def create_computer(car)
-    Computer.create!(car:car)
+  def create_computer
+    Computer.new
   end
 
   def total_factory_stock

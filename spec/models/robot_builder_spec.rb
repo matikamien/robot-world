@@ -16,32 +16,32 @@ RSpec.describe RobotBuilder, type: :model do
   end
 
   it "can create a wheel" do
-    wheel = robot_builder.create_wheel(car)
+    wheel = robot_builder.create_wheel
     expect(wheel).to be_a(Wheel)
   end
 
   it "can create a chassis" do
-    chassis = robot_builder.create_chassis(car)
+    chassis = robot_builder.create_chassis
     expect(chassis).to be_a(Chassis)
   end
 
   it "can create a engine" do
-    engine = robot_builder.create_engine(car)
+    engine = robot_builder.create_engine
     expect(engine).to be_a(Engine)
   end
 
   it "can create a seat" do
-    seat = robot_builder.create_seat(car)
+    seat = robot_builder.create_seat
     expect(seat).to be_a(Seat)
   end
 
   it "can create a laser" do
-    laser = robot_builder.create_laser(car)
+    laser = robot_builder.create_laser
     expect(laser).to be_a(Laser)
   end
 
   it "can create a computer" do
-    computer = robot_builder.create_computer(car)
+    computer = robot_builder.create_computer
     expect(computer).to be_a(Computer)
   end
 
