@@ -9,9 +9,10 @@ RSpec.describe RobotBuilder, type: :model do
     expect(robot_builder.car_factory).to be_a(CarFactory)
   end
 
-  it "can create a complete car" do
+  it "can create a complete car after going to the car factory" do
     car = robot_builder.create_car
-    expect(car.is_complete).to be true
+    completed_car = robot_builder.construct_car car
+    expect(completed_car.is_complete).to be true
   end
 
   it "can create a wheel" do
@@ -43,4 +44,13 @@ RSpec.describe RobotBuilder, type: :model do
     computer = robot_builder.create_computer(car)
     expect(computer).to be_a(Computer)
   end
+
+  it "should park the cars in the warehouse once are complete" do
+    expect(robot_builder.total_factory_stock).to eq 0
+
+    car = robot_builder.create_car_and_park_in_warehouse
+    expect(car.is_complete).to be true
+    expect(robot_builder.total_factory_stock).to eq 1
+  end
+
 end

@@ -7,13 +7,28 @@ class RobotBuilder
 
   def initialize
     @car_factory = CarFactory.create!
+    @warehouse = Warehouse.new
+  end
+
+  def create_car_and_park_in_warehouse
+    car = create_car
+    ccmpleted_car = construct_car car
+    park_car_in_warehouse ccmpleted_car
   end
 
   def create_car
     price = random_price
-    car = Car.create! year: current_year, model: random_model, price: price, cost_price: calculate_cost_price(price)
+    Car.create! year: current_year, model: random_model, price: price, cost_price: calculate_cost_price(price)
+  end
+
+  def construct_car(car)
     @car_factory.assembly_lines.each { |assembly_line| assembly_line.execute_action_to_car(car, self)  }
     car.assembly_stage_completed!
+    car
+  end
+
+  def park_car_in_warehouse(car)
+    @warehouse.park_car car
     car
   end
 
@@ -55,6 +70,10 @@ class RobotBuilder
 
   def create_computer(car)
     Computer.create!(car:car)
+  end
+
+  def total_factory_stock
+    @warehouse.total_factory_stock
   end
 
 end
