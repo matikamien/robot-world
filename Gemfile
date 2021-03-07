@@ -57,3 +57,5 @@ group :test do
 end
 
 gem 'whenever', require: false
+
+gem 'rest-client', '~> 2.1.0'
