@@ -42,14 +42,25 @@ RSpec.describe RobotBuilder, type: :model do
   it "should park the cars in the warehouse once are complete" do
     expect(robot_builder.total_factory_stock).to eq 0
 
-    cars = RobotBuilder.create_ten_cars
-    expect(RobotBuilder.instance.total_factory_stock).to eq 10
+    RobotBuilder.create_ten_cars
+    expect(robot_builder.total_factory_stock).to eq 10
   end
 
   it "can create a part with a defect" do
     robot_builder.defect_probability = 1
     wheel = robot_builder.create_wheel
     expect(wheel.has_defect).to eq true
+  end
+
+  it "can remove incomplete cars" do
+    incomplete_car = robot_builder.create_car
+    complete_car = robot_builder.create_car
+    complete_car.assembly_stage_completed!
+    expect(robot_builder.cars.size).to eq 2
+
+    robot_builder.remove_incomplete_cars
+    expect(robot_builder.cars.size).to eq 1
+    expect(robot_builder.cars.first).to eq complete_car
   end
 
 end

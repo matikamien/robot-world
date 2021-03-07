@@ -3,7 +3,7 @@ require 'singleton'
 class RobotBuilder
   include Singleton
 
-  attr_reader :warehouse, :car_factory
+  attr_reader :warehouse, :car_factory, :cars
   attr_writer :defect_probability
 
   CAR_MODELS = %w[Megane Tida Corsa March Up Gol Polo Fun Golf Vento]
@@ -14,6 +14,7 @@ class RobotBuilder
     @car_factory = CarFactory.create!
     @warehouse = Warehouse.new
     @defect_probability = DEFECT_PROBABILITY
+    @cars = []
   end
 
   def self.create_ten_cars
@@ -25,13 +26,24 @@ class RobotBuilder
     end
   end
 
+  def self.remove_incomplete_cars
+    self.instance.remove_incomplete_cars
+  end
+
+  def remove_incomplete_cars
+    @cars.delete_if { |car| !car.is_complete }
+  end
+
   def create_car
     price = random_price
-    Car.create! year: current_year, model: random_model, price: price, cost_price: calculate_cost_price(price)
+    car = Car.create! year: current_year, model: random_model, price: price, cost_price: calculate_cost_price(price)
+    @cars << car
+    car
   end
 
   def park_car_in_warehouse(car)
     @warehouse.park_car car
+    @cars.delete car
     car
   end
 
