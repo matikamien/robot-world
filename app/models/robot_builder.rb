@@ -15,19 +15,13 @@ class RobotBuilder
 
   def create_car_and_park_in_warehouse
     car = create_car
-    ccmpleted_car = construct_car car
-    park_car_in_warehouse ccmpleted_car
+    completed_car = @car_factory.construct_car car,self
+    park_car_in_warehouse completed_car
   end
 
   def create_car
     price = random_price
     Car.create! year: current_year, model: random_model, price: price, cost_price: calculate_cost_price(price)
-  end
-
-  def construct_car(car)
-    @car_factory.assembly_lines.each { |assembly_line| assembly_line.execute_action_to_car(car, self)  }
-    car.assembly_stage_completed!
-    car
   end
 
   def park_car_in_warehouse(car)

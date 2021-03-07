@@ -9,12 +9,6 @@ RSpec.describe RobotBuilder, type: :model do
     expect(robot_builder.car_factory).to be_a(CarFactory)
   end
 
-  it "can create a complete car after going to the car factory" do
-    car = robot_builder.create_car
-    completed_car = robot_builder.construct_car car
-    expect(completed_car.is_complete).to be true
-  end
-
   it "can create a wheel" do
     wheel = robot_builder.create_wheel
     expect(wheel).to be_a(Wheel)
