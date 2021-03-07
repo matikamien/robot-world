@@ -1,4 +1,7 @@
+require 'singleton'
+
 class GuardRobot
+  include Singleton
 
   attr_reader :warehouse
 

@@ -8,3 +8,7 @@ end
 every 1.day, at: '11:59 pm' do
   runner "RobotBuilder.remove_incomplete_cars"
 end
+
+every 30.minute do
+  runner "GuardRobotService.transfer_stock"
+end
