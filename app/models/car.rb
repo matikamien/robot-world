@@ -16,4 +16,10 @@ class Car < ApplicationRecord
     self.assembly_stage
   end
 
+  # It should return an error if computer is not found.
+  def has_defect
+    computer = parts.find { |part| part.type == "Computer" }
+    computer.car_has_any_defect
+  end
+
 end

@@ -5,14 +5,14 @@ RSpec.describe Warehouse, type: :model do
   let(:warehouse) { Warehouse.new }
 
   it "is created with no cars" do
-    expect(warehouse.cars.empty?).to eq true
+    expect(warehouse.factory_stock.empty?).to eq true
   end
 
   it "can park cars" do
     cars = []
     10.times { cars << Car.new }
     warehouse.park_cars cars
-    expect(warehouse.cars.size).to eq 10
+    expect(warehouse.factory_stock.size).to eq 10
   end
 
   it "can calculate factory stock by model" do

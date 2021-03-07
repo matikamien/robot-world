@@ -1,26 +1,32 @@
 class Warehouse
 
-  attr_reader :cars
+  attr_reader :factory_stock
+  attr_reader :store_stock
 
   def initialize
     super
-    @cars = []
+    @factory_stock = []
+    @store_stock = []
   end
 
   def park_car(car)
-    @cars << car
+    @factory_stock << car
   end
 
   def park_cars(cars)
-    @cars += cars
+    @factory_stock += cars
   end
 
   def factory_stock_by_model(model)
-    @cars.select{ |car| car.model == model }.size
+    @factory_stock.select{ |car| car.model == model }.size
   end
 
   def total_factory_stock
-    @cars.size
+    @factory_stock.size
+  end
+
+  def total_store_stock
+    @store_stock.size
   end
 
 end
