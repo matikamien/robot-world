@@ -41,8 +41,16 @@ class Warehouse
     @store_stock.find{ |car| car.model == model }
   end
 
+  def get_cars_from_factory model
+    @factory_stock.find_all{ |car| car.model == model }
+  end
+
   def decrement_store_stock car
     @store_stock.delete car
+  end
+
+  def decrement_factory_stock car
+    @factory_stock.delete car
   end
 
 end

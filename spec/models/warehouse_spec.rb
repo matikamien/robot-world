@@ -51,20 +51,36 @@ RSpec.describe Warehouse, type: :model do
     Car.new(model:model)
   end
 
-  it "can get a car from store" do
+  it "can get a car from store by model" do
     car = create_car("Corsa")
     warehouse.add_cars_to_store [car]
     car_from_store = warehouse.get_car_from_store("Corsa")
     expect(car_from_store).to be car
   end
 
-  it "can decrement store" do
+  it "can decrement store stock" do
     car = create_car("Corsa")
     warehouse.add_cars_to_store [car]
     expect(warehouse.total_store_stock).to be 1
 
     warehouse.decrement_store_stock car
     expect(warehouse.total_store_stock).to be 0
+  end
+
+  it "can get cars from factory by model" do
+    car = create_car("Corsa")
+    warehouse.park_cars [car]
+    cars_from_factory = warehouse.get_cars_from_factory("Corsa")
+    expect(cars_from_factory).to eq [car]
+  end
+
+  it "can decrement factory stock" do
+    car = create_car("Corsa")
+    warehouse.park_cars [car]
+    expect(warehouse.total_factory_stock).to be 1
+
+    warehouse.decrement_factory_stock car
+    expect(warehouse.total_factory_stock).to be 0
   end
 
 end
