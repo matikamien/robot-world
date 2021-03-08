@@ -41,7 +41,7 @@ class Warehouse
     @store_stock.find{ |car| car.model == model }
   end
 
-  def decrement_store car
+  def decrement_store_stock car
     @store_stock.delete car
   end
 

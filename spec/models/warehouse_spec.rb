@@ -63,7 +63,7 @@ RSpec.describe Warehouse, type: :model do
     warehouse.add_cars_to_store [car]
     expect(warehouse.total_store_stock).to be 1
 
-    warehouse.decrement_store car
+    warehouse.decrement_store_stock car
     expect(warehouse.total_store_stock).to be 0
   end
 
