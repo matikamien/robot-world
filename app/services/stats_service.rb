@@ -1,12 +1,23 @@
 class StatsService
 
-  def initialize order_service
+  def initialize order_service,output_creator
     @order_service = order_service
+    @output_creator = output_creator
   end
 
-  def daily_revenue
-    total_daily_revenue = 0
+  def get_stats
     orders = @order_service.get_orders_from_today
+    total_orders = orders.size
+
+    daily_revenue = daily_revenue orders
+    sold_cars = total_orders
+    average_order_value = (daily_revenue/total_orders.to_f).round(2)
+
+    @output_creator.generate_output daily_revenue,sold_cars,average_order_value
+  end
+
+  def daily_revenue orders
+    total_daily_revenue = 0
 
     orders.each do |order|
       car_price = Car.find_by(id:order.car_id).price
@@ -14,14 +25,6 @@ class StatsService
     end
 
     total_daily_revenue.round(2)
-  end
-
-  def sold_cars
-    @order_service.get_orders_from_today.size
-  end
-
-  def average_order_value
-    (daily_revenue / @order_service.get_orders_from_today.size.to_f).round(2)
   end
 
 end
