@@ -5,7 +5,8 @@ RSpec.describe RobotBuyer, type: :model do
   let(:robot_buyer) { RobotBuyerForTesting.instance }
   let(:console_logger) { double("console_logger") }
   let(:warehouse) { Warehouse.new }
-  let(:order_generator) { OrderGenerator.new warehouse }
+  let(:stock_service) { StockService.new warehouse }
+  let(:order_generator) { OrderGenerator.new stock_service }
 
   before(:each) do
     robot_buyer.order_generator = order_generator
