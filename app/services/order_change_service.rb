@@ -3,10 +3,11 @@ class OrderChangeService
   class OrderNotFoundError < StandardError; end
   class NoStockError < StandardError; end
 
-  def initialize(order_id, car_model, stock_service)
+  def initialize(order_id, car_model, stock_service, order_service)
     @order_id = order_id
     @car_model = car_model
     @stock_service = stock_service
+    @order_service = order_service
   end
 
   def create_order_change_if_applies
@@ -16,7 +17,7 @@ class OrderChangeService
   end
 
   def check_order_and_throw_exception_if_applies
-    order = Order.find_by(id:@order_id)
+    order = @order_service.find_order @order_id
     if order.nil?
       raise OrderNotFoundError
     end

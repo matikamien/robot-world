@@ -14,7 +14,7 @@ class OrderChangesController < ApplicationController
   end
 
   def create_order(order_id, car_model)
-    OrderChangeService.new(order_id, car_model, RobotBuyerService.get_stock_service).create_order_change_if_applies
+    OrderChangeService.new(order_id, car_model, RobotBuyerService.get_stock_service, OrderService.new).create_order_change_if_applies
   end
 
   def error_info error, error_description
