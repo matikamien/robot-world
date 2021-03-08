@@ -10,5 +10,5 @@ every 1.day, at: '11:59 pm' do
 end
 
 every 30.minute do
-  runner "GuardRobotService.transfer_stock"
+  runner "GuardRobotService.transfer_stock_and_notify_defects"
 end

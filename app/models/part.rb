@@ -12,4 +12,8 @@ class Part < ApplicationRecord
     @defect.is_defect
   end
 
+  def to_s
+    self.type
+  end
+
 end

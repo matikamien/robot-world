@@ -17,9 +17,16 @@ class Car < ApplicationRecord
   end
 
   # It should return an error if computer is not found.
+  def get_computer
+    parts.find { |part| part.type == "Computer" }
+  end
+
   def has_defect
-    computer = parts.find { |part| part.type == "Computer" }
-    computer.car_has_any_defect
+    get_computer.car_has_any_defect
+  end
+
+  def get_parts_with_defect
+    get_computer.get_parts_with_defect
   end
 
 end
