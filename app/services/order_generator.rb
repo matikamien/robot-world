@@ -11,7 +11,7 @@ class OrderGenerator
       @warehouse.decrement_store car
       return order
     end
-    NoOrder.new
+    NoOrder.new model
   end
 
 end
