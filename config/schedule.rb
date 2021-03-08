@@ -12,3 +12,7 @@ end
 every 30.minute do
   runner "GuardRobotService.transfer_stock_and_notify_defects"
 end
+
+every 30.minute do
+  runner "RobotBuyerService.buy_cars"
+end
