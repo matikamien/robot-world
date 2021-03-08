@@ -1,5 +1,7 @@
 class StockService
 
+  attr_reader :warehouse
+
   def initialize warehouse
     @warehouse = warehouse
   end

@@ -10,8 +10,8 @@ class RobotBuyerService
     RobotBuyer.instance.buy_cars
   end
 
-  def self.get_order_generator
-    @@order_generator
+  def self.get_stock_service
+    @@stock_service
   end
 
   def set_warehouse warehouse
