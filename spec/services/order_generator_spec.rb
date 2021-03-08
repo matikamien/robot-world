@@ -20,13 +20,17 @@ RSpec.describe OrderGenerator, type: :model do
 
   def mock_warehouse_with_stock
     car = double("car", :id => 1)
+    store_stock = double("store_stock")
     allow(warehouse).to receive(:store_stock_by_model) { 1 }
     allow(warehouse).to receive(:get_car_from_store) { car }
-    expect(warehouse).to receive(:decrement_store_stock) { car }
+    allow(warehouse).to receive(:store_stock) { store_stock }
+    expect(store_stock).to receive(:delete) { car }
+
   end
 
   def mock_warehouse_without_stock
     allow(warehouse).to receive(:store_stock_by_model) { 0 }
+    allow(warehouse).to receive(:factory_stock_by_model) { 0 }
   end
 
 end
