@@ -25,8 +25,24 @@ class Warehouse
     @factory_stock.size
   end
 
+  def add_cars_to_store cars
+    @store_stock += cars
+  end
+
+  def store_stock_by_model(model)
+    @store_stock.select{ |car| car.model == model }.size
+  end
+
   def total_store_stock
     @store_stock.size
+  end
+
+  def get_car_from_store model
+    @store_stock.find{ |car| car.model == model }
+  end
+
+  def decrement_store car
+    @store_stock.delete car
   end
 
 end
