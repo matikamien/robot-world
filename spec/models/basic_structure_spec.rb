@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe BasicStructure, type: :model do
 
-  subject { described_class.new }
+  let(:basic_structure) { BasicStructure.new }
 
   it "should left the car with the basic structure" do
     car = Car.create!(model: "Corsa", year: 1950, price: 1500, cost_price:1000)
     robot_builder = RobotBuilder.new
-    subject.execute_action_to_car(car, robot_builder)
+    basic_structure.execute_action_to_car(car, robot_builder)
 
     amount_of_chassis = car.parts.select { |part| part.type == "Chassis" }.size
     expect(amount_of_chassis).to eq(1)
