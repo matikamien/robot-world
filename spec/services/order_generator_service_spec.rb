@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe OrderGenerator, type: :model do
+RSpec.describe OrderGeneratorService, type: :model do
 
   let(:stock_service) { double("StockService") }
-  let(:order_generator) { OrderGenerator.new stock_service }
+  let(:order_generator) { OrderGeneratorService.new stock_service }
 
   it "creates a valid order when there is stock" do
     mock_stock_service_with_stock

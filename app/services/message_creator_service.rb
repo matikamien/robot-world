@@ -1,4 +1,4 @@
-class MessageCreator
+class MessageCreatorService
 
   def create_message car
     message = "The car with id " + car.id.to_s + " has defects in the following parts: "

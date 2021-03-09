@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe ConsoleLogger, type: :model do
+RSpec.describe ConsoleLoggerService, type: :model do
 
-  let(:console_logger) { ConsoleLogger.new }
+  let(:console_logger) { ConsoleLoggerService.new }
   let(:order) { double("order") }
 
   before(:each) do

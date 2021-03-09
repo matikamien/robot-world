@@ -7,7 +7,7 @@ class StatsController < ApplicationController
   end
 
   def get_stats_service
-    StatsService.new(OrderService.new, JsonCreator.new)
+    StatsService.new(OrderService.new, JsonCreatorService.new)
   end
 
 end

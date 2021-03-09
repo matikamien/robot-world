@@ -1,4 +1,4 @@
-class JsonCreator
+class JsonCreatorService
 
   def generate_output daily_revenue,sold_cars,average_order_value
     { daily_revenue: daily_revenue,

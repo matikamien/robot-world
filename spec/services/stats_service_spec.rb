@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe StatsService, type: :model do
 
   let(:order_service) { OrderService.new }
-  let(:output_creator) { JsonCreator.new }
+  let(:output_creator) { JsonCreatorService.new }
   let(:stats_service) { StatsService.new order_service,output_creator }
 
   it "should calculate daily revenue, sold cars and average order value" do

@@ -1,4 +1,4 @@
-class OrderGenerator
+class OrderGeneratorService
 
   def initialize stock_service
     @stock_service = stock_service
