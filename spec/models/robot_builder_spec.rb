@@ -2,12 +2,8 @@ require 'rails_helper'
 
 RSpec.describe RobotBuilder, type: :model do
 
-  let(:robot_builder) { RobotBuilder.instance }
+  let(:robot_builder) { RobotBuilder.new }
   let(:car) { Car.new }
-
-  it "is created with a car factory" do
-    expect(robot_builder.car_factory).to be_a(CarFactory)
-  end
 
   it "can create a wheel" do
     wheel = robot_builder.create_wheel
@@ -42,7 +38,7 @@ RSpec.describe RobotBuilder, type: :model do
   it "should park the cars in the warehouse once are complete" do
     expect(robot_builder.total_factory_stock).to eq 0
 
-    RobotBuilder.create_ten_cars
+    robot_builder.create_ten_cars
     expect(robot_builder.total_factory_stock).to eq 10
   end
 

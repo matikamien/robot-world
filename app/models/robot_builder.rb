@@ -1,9 +1,5 @@
-require 'singleton'
-
 class RobotBuilder
-  include Singleton
 
-  attr_reader :warehouse, :car_factory
   attr_writer :defect_probability
 
   CAR_MODELS = %w[Megane Tida Corsa March Up Gol Polo Fun Golf Vento]
@@ -16,21 +12,16 @@ class RobotBuilder
     @defect_probability = DEFECT_PROBABILITY
   end
 
-  def self.create_ten_cars
-    robot_builder = self.instance
+  def create_ten_cars
     10.times do
-      car = robot_builder.create_car
-      constructed_car = robot_builder.car_factory.construct_car(car, robot_builder)
-      robot_builder.park_car_in_warehouse(constructed_car)
+      car = create_car
+      constructed_car = @car_factory.construct_car(car, self)
+      park_car_in_warehouse(constructed_car)
     end
   end
 
   def cars_in_construction
     Car.all.select{ |car| car.location_in_construction? }
-  end
-
-  def self.remove_incomplete_cars
-    self.instance.remove_incomplete_cars
   end
 
   def in_construction_and_incomplete_cars
