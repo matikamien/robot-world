@@ -1,3 +1,6 @@
+##
+# This class knows how to check if an order can be created and is also responsible for creating it.
+
 class OrderGeneratorService
 
   def initialize stock_service

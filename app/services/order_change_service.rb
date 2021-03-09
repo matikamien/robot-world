@@ -1,3 +1,6 @@
+##
+# This class knows how to check if an order change is valid and is also responsible for creating the order change.
+
 class OrderChangeService
 
   class OrderNotFoundError < StandardError; end

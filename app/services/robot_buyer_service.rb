@@ -1,3 +1,6 @@
+##
+# This class knows how to instantiate a Robot Buyer.
+
 class RobotBuyerService
 
   def self.buy_cars

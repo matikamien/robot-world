@@ -1,3 +1,6 @@
+##
+# This class knows how to calculate stats.
+
 class StatsService
 
   def initialize order_service,output_creator

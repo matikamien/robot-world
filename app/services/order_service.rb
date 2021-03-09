@@ -1,3 +1,6 @@
+##
+# This class knows how to get orders from database.
+
 class OrderService
 
   def find_order order_id

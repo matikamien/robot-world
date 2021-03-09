@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe GuardRobot, type: :model do
 
   let(:notifier) { double("Notifier", :notify => nil ) }
-  let(:message_creator) { double("MessageCreator", :create_message => "Testing Message") }
-  let(:guard_robot) { GuardRobot.new(notifier, message_creator) }
+  let(:message_creator_service) { double("MessageCreator", :create_message => "Testing Message") }
+  let(:defect_service) { DefectService.new }
+  let(:guard_robot) { GuardRobot.new(notifier, message_creator_service, defect_service) }
   let(:warehouse) { Warehouse.new }
 
   it "can transfer the stock from factory stock to store stock (only the non-defective cars)" do

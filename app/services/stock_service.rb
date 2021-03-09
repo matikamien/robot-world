@@ -1,6 +1,10 @@
+##
+# This class knows how to check if there is stock for some car model and is also responsible for retrieving the car from warehouse.
+
 class StockService
 
   def initialize
+    @defect_service = DefectService.new
     @warehouse = Warehouse.new
   end
 
@@ -16,7 +20,7 @@ class StockService
 
   def check_cars_without_defect model
     cars = @warehouse.get_cars_from_factory model
-    car_without_defect = cars.find { |car| !car.has_defect }
+    car_without_defect = cars.find { |car| !@defect_service.car_has_defect(car) }
     car_without_defect.nil? ? false : true
   end
 
@@ -28,7 +32,7 @@ class StockService
 
   def get_car_from_factory model
     cars = @warehouse.get_cars_from_factory model
-    car_without_defect = cars.find { |car| !car.has_defect }
+    car_without_defect = cars.find { |car| !@defect_service.car_has_defect(car) }
     sell_car(car_without_defect)
   end
 
