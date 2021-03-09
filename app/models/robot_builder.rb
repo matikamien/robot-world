@@ -61,50 +61,50 @@ class RobotBuilder
     0.5*price
   end
 
-  def create_defect
+  def create_defect part
     # random will be a number between 1 and 100 (inclusive)
     random = rand(100) + 1
 
     if random <= @defect_probability*100
-      ConcreteDefect.new
+      ConcreteDefect.create!(part_id:part.id)
     else
-      NoDefect.new
+      NoDefect.create!(part_id:part.id)
     end
   end
 
-  def create_wheel
-    wheel = Wheel.new
-    wheel.set_defect create_defect
+  def create_wheel car
+    wheel = Wheel.create!(car_id:car.id)
+    wheel.set_defect create_defect(wheel)
     wheel
   end
 
-  def create_chassis
-    chassis = Chassis.new
-    chassis.set_defect create_defect
+  def create_chassis car
+    chassis = Chassis.create!(car_id:car.id)
+    chassis.set_defect create_defect(chassis)
     chassis
   end
 
-  def create_engine
-    engine = Engine.new
-    engine.set_defect create_defect
+  def create_engine car
+    engine = Engine.create!(car_id:car.id)
+    engine.set_defect create_defect(engine)
     engine
   end
 
-  def create_seat
-    seat = Seat.new
-    seat.set_defect create_defect
+  def create_seat car
+    seat = Seat.create!(car_id:car.id)
+    seat.set_defect create_defect(seat)
     seat
   end
 
-  def create_laser
-    laser = Laser.new
-    laser.set_defect create_defect
+  def create_laser car
+    laser = Laser.create!(car_id:car.id)
+    laser.set_defect create_defect(laser)
     laser
   end
 
-  def create_computer
-    computer = Computer.new
-    computer.set_defect create_defect
+  def create_computer car
+    computer = Computer.create!(car_id:car.id)
+    computer.set_defect create_defect(computer)
     computer
   end
 

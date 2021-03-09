@@ -7,14 +7,14 @@ class ElectronicDevices < AssemblyLine
   end
 
   def add_laser(car, robot_builder)
-    laser = robot_builder.create_laser
+    laser = robot_builder.create_laser car
     laser.update! car:car
     car.parts << laser
     car
   end
 
   def add_computer(car, robot_builder)
-    computer = robot_builder.create_computer
+    computer = robot_builder.create_computer car
     computer.update! car:car
     car.parts << computer
   end

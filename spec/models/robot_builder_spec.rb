@@ -3,35 +3,35 @@ require 'rails_helper'
 RSpec.describe RobotBuilder, type: :model do
 
   let(:robot_builder) { RobotBuilder.new }
-  let(:car) { Car.new }
+  let(:car) { CarCreator.create_car "Corsa" }
 
   it "can create a wheel" do
-    wheel = robot_builder.create_wheel
+    wheel = robot_builder.create_wheel car
     expect(wheel).to be_a(Wheel)
   end
 
   it "can create a chassis" do
-    chassis = robot_builder.create_chassis
+    chassis = robot_builder.create_chassis car
     expect(chassis).to be_a(Chassis)
   end
 
   it "can create a engine" do
-    engine = robot_builder.create_engine
+    engine = robot_builder.create_engine car
     expect(engine).to be_a(Engine)
   end
 
   it "can create a seat" do
-    seat = robot_builder.create_seat
+    seat = robot_builder.create_seat car
     expect(seat).to be_a(Seat)
   end
 
   it "can create a laser" do
-    laser = robot_builder.create_laser
+    laser = robot_builder.create_laser car
     expect(laser).to be_a(Laser)
   end
 
   it "can create a computer" do
-    computer = robot_builder.create_computer
+    computer = robot_builder.create_computer car
     expect(computer).to be_a(Computer)
   end
 
@@ -44,7 +44,7 @@ RSpec.describe RobotBuilder, type: :model do
 
   it "can create a part with a defect" do
     robot_builder.defect_probability = 1
-    wheel = robot_builder.create_wheel
+    wheel = robot_builder.create_wheel car
     expect(wheel.has_defect).to eq true
   end
 

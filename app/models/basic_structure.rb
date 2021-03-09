@@ -10,7 +10,7 @@ class BasicStructure < AssemblyLine
 
   def add_wheels(car, robot_builder)
     4.times do
-      wheel = robot_builder.create_wheel
+      wheel = robot_builder.create_wheel(car)
       wheel.update! car:car
       car.parts << wheel
     end
@@ -18,14 +18,14 @@ class BasicStructure < AssemblyLine
   end
 
   def add_chassis(car, robot_builder)
-    chassis = robot_builder.create_chassis
+    chassis = robot_builder.create_chassis car
     chassis.update! car:car
     car.parts << chassis
     car
   end
 
   def add_engine(car, robot_builder)
-    engine = robot_builder.create_engine
+    engine = robot_builder.create_engine car
     engine.update! car:car
     car.parts << engine
     car
@@ -33,7 +33,7 @@ class BasicStructure < AssemblyLine
 
   def add_seats(car, robot_builder)
     2.times do
-      seat = robot_builder.create_seat
+      seat = robot_builder.create_seat car
       seat.update! car:car
       car.parts << seat
     end
