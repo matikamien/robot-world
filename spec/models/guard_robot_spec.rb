@@ -25,14 +25,10 @@ RSpec.describe GuardRobot, type: :model do
     expect(guard_robot.warehouse.total_store_stock).to eq 6
   end
 
-  # If @has_defect is true, the car will answer true to has_defect method.
-  # @size is the amount of cars that you want to create.
   def create_cars has_defect,size
     cars = []
     size.times do
-      car = double("Car", :has_defect => has_defect)
-      allow(car).to receive(:id) { 1 }
-      cars << car
+      cars << (CarCreator.create_with_defect has_defect)
     end
     cars
   end

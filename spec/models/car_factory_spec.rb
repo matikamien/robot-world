@@ -32,7 +32,6 @@ RSpec.describe CarFactory, type: :model do
     car = robot_builder.create_car
     completed_car = car_factory.construct_car car,robot_builder
     expect(completed_car.is_complete).to be true
-    robot_builder.cars.delete car
   end
 
 end

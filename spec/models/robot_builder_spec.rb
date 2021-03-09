@@ -56,11 +56,11 @@ RSpec.describe RobotBuilder, type: :model do
     incomplete_car = robot_builder.create_car
     complete_car = robot_builder.create_car
     complete_car.assembly_stage_completed!
-    expect(robot_builder.cars.size).to eq 2
+    expect(robot_builder.cars_in_construction.size).to eq 2
 
     robot_builder.remove_incomplete_cars
-    expect(robot_builder.cars.size).to eq 1
-    expect(robot_builder.cars.first).to eq complete_car
+    expect(robot_builder.cars_in_construction.size).to eq 1
+    expect(robot_builder.cars_in_construction.first).to eq complete_car
   end
 
 end

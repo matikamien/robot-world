@@ -34,20 +34,20 @@ RSpec.describe RobotBuyer, type: :model do
   end
 
   it "can buy a car from the factory stock when there is no store stock checking that car has no defect" do
-    car = double("car", :has_defect => false, :model => "Corsa", :id => 1 )
+    car = CarCreator.create_with_defect false
     warehouse.park_cars [ car ]
     expect(warehouse.total_store_stock).to eq 0
     expect(warehouse.total_factory_stock).to eq 1
 
     orders = robot_buyer.buy_cars
     expect(orders.size).to eq 1
-    expect(orders[0].car_id).to eq 1
+    expect(orders[0].car_id).to eq car.id
     expect(warehouse.total_store_stock).to eq 0
     expect(warehouse.total_factory_stock).to eq 0
   end
 
   it "can not buy a car from the factory stock when there is no store stock because the car has a defect" do
-    car = double("car", :has_defect => true , :model => "Corsa", :id => 1 )
+    car = CarCreator.create_with_defect true
     warehouse.park_cars [ car ]
     expect(warehouse.total_store_stock).to eq 0
     expect(warehouse.total_factory_stock).to eq 1

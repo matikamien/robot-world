@@ -13,12 +13,11 @@ class GuardRobot
   def transfer_stock_and_notify_defects
     @warehouse.factory_stock.each do |car|
       if !car.has_defect
-        @warehouse.store_stock << car
+        car.location_store_stock!
       else
         notify_defect car
       end
     end
-    @warehouse.store_stock.each { |car| @warehouse.factory_stock.delete car }
   end
 
   def notify_defect car

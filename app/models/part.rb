@@ -5,11 +5,11 @@ class Part < ApplicationRecord
   has_one :defect
 
   def set_defect defect
-    @defect = defect
+    self.defect = defect
   end
 
   def has_defect
-    @defect.is_defect
+    defect.is_defect
   end
 
   def to_s

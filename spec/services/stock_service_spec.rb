@@ -15,7 +15,7 @@ RSpec.describe StockService, type: :model do
   end
 
   it "ask for a car and returns true when the car is in the factory and has no defects" do
-    car = double("car", :has_defect => false, :model => "Corsa", :id => 1 )
+    car = CarCreator.create_with_defect false
     warehouse.park_cars [ car ]
     expect(warehouse.total_factory_stock).to eq 1
 
@@ -24,7 +24,7 @@ RSpec.describe StockService, type: :model do
   end
 
   it "ask for a car and returns false when the car is in the factory but has a defect" do
-    car = double("car", :has_defect => true , :model => "Corsa", :id => 1 )
+    car = CarCreator.create_with_defect true
     warehouse.park_cars [ car ]
     expect(warehouse.total_factory_stock).to eq 1
 
@@ -32,8 +32,8 @@ RSpec.describe StockService, type: :model do
     expect(has_stock).to be false
   end
 
-  it "ask for a car and returns false when there is no stock" do
-    car = double("car", :has_defect => true , :model => "Corsa", :id => 1 )
+  it "ask for a car and returns false when there is no stocgitk" do
+    car = CarCreator.create_with_defect true
     warehouse.park_cars [ car ]
     expect(warehouse.total_factory_stock).to eq 1
 
@@ -42,23 +42,23 @@ RSpec.describe StockService, type: :model do
   end
 
   it "returns a car from the factory and decrement the stock" do
-    car = double("car", :has_defect => false, :model => "Corsa", :id => 1 )
+    car = CarCreator.create_with_defect false
     warehouse.park_cars [ car ]
     expect(warehouse.total_factory_stock).to eq 1
 
     returned_car = stock_service.get_car_from_warehouse "Corsa"
-    expect(returned_car.id).to eq 1
+    expect(returned_car.id).to eq car.id
     expect(returned_car.model).to eq "Corsa"
     expect(warehouse.total_factory_stock).to eq 0
   end
 
   it "returns a car from the store and decrement the stock" do
-    car = double("car", :has_defect => false, :model => "Corsa", :id => 1 )
+    car = CarCreator.create_with_defect false
     warehouse.add_cars_to_store [ car ]
     expect(warehouse.total_store_stock).to eq 1
 
     returned_car = stock_service.get_car_from_warehouse "Corsa"
-    expect(returned_car.id).to eq 1
+    expect(returned_car.id).to eq car.id
     expect(returned_car.model).to eq "Corsa"
     expect(warehouse.total_store_stock).to eq 0
   end
