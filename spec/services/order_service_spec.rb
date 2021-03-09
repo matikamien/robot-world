@@ -5,8 +5,9 @@ RSpec.describe OrderService, type: :model do
   let(:order_service) { OrderService.new }
 
   it "should return orders from today" do
-    2.times {create_order Date.today}
-    create_order Date.yesterday
+    now = Time.zone.now
+    2.times {create_order now}
+    create_order now-1.day
 
     orders = order_service.get_orders_from_today
 

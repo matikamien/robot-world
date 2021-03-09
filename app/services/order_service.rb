@@ -6,9 +6,9 @@ class OrderService
 
   def get_orders_from_today
     Order.all.select do |order|
-      order.created_at.day == Date.today.day &&
-        order.created_at.month == Date.today.month &&
-        order.created_at.year == Date.today.year
+      order.created_at.day == Time.zone.now.day &&
+        order.created_at.month == Time.zone.now.month &&
+        order.created_at.year == Time.zone.now.year
     end
   end
 
