@@ -1,5 +1,11 @@
 class CarCreator
 
+  def self.create_cars_with_defects has_defect,size
+    cars = []
+    size.times { cars << (create_with_defect has_defect) }
+    cars
+  end
+
   def self.create_with_defect has_defect
     car = create_car "Corsa"
     wheel = Wheel.create!(car:car, defect:create_defect(has_defect))

@@ -1,17 +1,12 @@
-require 'singleton'
-
 class GuardRobot
-  include Singleton
 
-  attr_reader :warehouse
-  attr_writer :notifier_service, :message_creator
-
-  def initialize
-    @warehouse = Warehouse.new
+  def initialize notifier_service,message_creator
+    @notifier_service = notifier_service
+    @message_creator = message_creator
   end
 
   def transfer_stock_and_notify_defects
-    @warehouse.factory_stock.each do |car|
+    get_warehouse.factory_stock.each do |car|
       if !car.has_defect
         car.location_store_stock!
       else
@@ -22,6 +17,10 @@ class GuardRobot
 
   def notify_defect car
     @notifier_service.notify @message_creator.create_message(car)
+  end
+
+  def get_warehouse
+    Warehouse.new
   end
 
 end
