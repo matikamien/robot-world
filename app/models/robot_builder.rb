@@ -6,10 +6,15 @@ class RobotBuilder
   CAR_PRICES = [ 10000, 25000, 7500, 12800, 30000, 50000 ]
   DEFECT_PROBABILITY = 0.03
 
+
   def initialize
-    @car_factory = CarFactory.create!
+    @car_factory = CarFactory.new get_assembly_lines
     @warehouse = Warehouse.new
     @defect_probability = DEFECT_PROBABILITY
+  end
+
+  def get_assembly_lines
+    [BasicStructure.new, ElectronicDevices.new, PaintingAndFinalDetails.new]
   end
 
   def self.create_ten_cars

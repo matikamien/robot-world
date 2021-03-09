@@ -10,23 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_03_09_011800) do
+ActiveRecord::Schema.define(version: 2021_03_09_200044) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "assembly_lines", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "car_factory_id"
-    t.string "type"
-    t.index ["car_factory_id"], name: "index_car_factory_id"
-  end
-
-  create_table "car_factories", force: :cascade do |t|
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "cars", force: :cascade do |t|
     t.decimal "price"
