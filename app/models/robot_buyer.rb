@@ -1,12 +1,11 @@
-require 'singleton'
-
 class RobotBuyer
-  include Singleton
 
   CAR_MODELS = %w[Megane Tida Corsa March Up Gol Polo Fun Golf Vento]
 
-  attr_writer :order_generator
-  attr_writer :logger
+  def initialize order_generator,logger
+    @order_generator = order_generator
+    @logger = logger
+  end
 
   def buy_cars
     orders = []

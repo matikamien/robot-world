@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe StockService, type: :model do
 
   let(:warehouse) { Warehouse.new }
-  let(:stock_service) { StockService.new warehouse }
+  let(:stock_service) { StockService.new }
 
   it "ask for a car and returns true when the car is in the store" do
     car = Car.create!(model: "Corsa", year: 1950, price: 1500, cost_price:1000)

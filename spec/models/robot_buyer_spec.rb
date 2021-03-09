@@ -2,16 +2,11 @@ require 'rails_helper'
 
 RSpec.describe RobotBuyer, type: :model do
 
-  let(:robot_buyer) { RobotBuyerForTesting.instance }
-  let(:console_logger) { double("console_logger") }
   let(:warehouse) { Warehouse.new }
-  let(:stock_service) { StockService.new warehouse }
+  let(:stock_service) { StockService.new }
   let(:order_generator) { OrderGenerator.new stock_service }
-
-  before(:each) do
-    robot_buyer.order_generator = order_generator
-    robot_buyer.logger = console_logger
-  end
+  let(:console_logger) { double("console_logger") }
+  let(:robot_buyer) { RobotBuyerForTesting.new(order_generator, console_logger) }
 
   it "can buy a car with stock, an order is generated and stock is decremented" do
     car = Car.create!(model: "Corsa", year: 1950, price: 1500, cost_price:1000)

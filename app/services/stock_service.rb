@@ -1,9 +1,7 @@
 class StockService
 
-  attr_reader :warehouse
-
-  def initialize warehouse
-    @warehouse = warehouse
+  def initialize
+    @warehouse = Warehouse.new
   end
 
   def has_stock model
