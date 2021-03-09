@@ -4,7 +4,7 @@
 class ConsoleLoggerService
 
   def log order
-    print "Error when trying to create an order to buy a " + order.model + " because lack of stock."
+    print "Error when trying to create an order to buy a car with model " + order.model + " because lack of stock."
   end
 
 end

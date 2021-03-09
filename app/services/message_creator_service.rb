@@ -9,8 +9,8 @@ class MessageCreatorService
 
   def create_message car
     message = "The car with id " + car.id.to_s + " has defects in the following parts: "
-    parts_with_defect = @defect_service.get_parts_with_defect
-    parts_with_defect.each { |part| message += (part.to_s + ' with id ' + part.id.to_s + ', ') }
+    parts_with_defect = @defect_service.get_parts_with_defect car
+    parts_with_defect.each { |part| message += (part.to_s + ', ') }
     message = message[0...message.length-2]
     message += '.'
     message
