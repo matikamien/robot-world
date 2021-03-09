@@ -21,10 +21,6 @@ class Car < ApplicationRecord
     self.assembly_stage_completed?
   end
 
-  def current_assembly_stage
-    self.assembly_stage
-  end
-
   # It should return an error if computer is not found.
   def get_computer
     parts.find { |part| part.type == "Computer" }
