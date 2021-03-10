@@ -52,12 +52,16 @@ group :development, :test do
   gem 'rspec-rails', '~> 4.0.2'
 end
 
+# Use for testing
 group :test do
   gem 'shoulda-matchers', '~> 4.0'
 end
 
+# Use for chrons
 gem 'whenever', require: false
 
+# Use for making http requests
 gem 'rest-client', '~> 2.1.0'
 
+# Use for serialize models
 gem 'active_model_serializers', '~> 0.10.0'
